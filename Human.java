@@ -110,12 +110,12 @@ public class Human {
 	
 	public void move() {
 		position[] nbrs = this.neighbors();
-		Vector<position> empty = new Vector<position>();
-		Vector<position> resources = new Vector<position>();
-		Vector<position> humans = new Vector<position>();
-		for (int i = 0 ; i < 8; i++) {
+		Vector<position> emptyNbrs = new Vector<position>();
+		Vector<position> resourceNbrs = new Vector<position>();
+		Vector<position> humanNbrs = new Vector<position>();
+		for (int i = 0 ; i < 4; i++) {
 			if (nbrs[i].humanp) 
-				humans.add(nbrs[i]);
+				humanNbrs.add(nbrs[i]);
 			else {
 				if (nbrs[i].resourcep) {
 //					double hst = this.hstrength.getCurrStrength();
@@ -123,13 +123,13 @@ public class Human {
 //					this.hstrength.setCurrStrength(hst + nbrs[i].resourceHere.value);
 //					nbrs[i].resourceHere.value = this.hstrength.getCurrStrength() - hst;
 					
-					resources.add(nbrs[i]);
+					resourceNbrs.add(nbrs[i]);
 				}
 				else 
-					empty.add(nbrs[i]);
+					emptyNbrs.add(nbrs[i]);
 			}
 		}
-		for (position p : humans) {
+		for (position p : humanNbrs) {
 			if (this.interactionList.containsKey(p.humanHere)) {
 				this.interactionList.put(p.humanHere, Math.max(this.interactionList.get(p.humanHere) + Constants.interactFactor, 1.0));				
 			}
@@ -138,10 +138,10 @@ public class Human {
 				this.curiosity += Constants.untrackedFactor;
 			}
 		}
-		if (!(resources.isEmpty()) && (this.hstrength.getCurrStrength() < Constants.strengthThreshold)) {
+		if (!(resourceNbrs.isEmpty()) && (this.hstrength.getCurrStrength() < Constants.strengthThreshold)) {
 			double rval = 0;
 			position pr = null;
-			for (position p : resources) {
+			for (position p : resourceNbrs) {
 				double prvalue = p.resourceHere.value;
 				if (prvalue > rval) {
 					rval = prvalue;
@@ -153,18 +153,22 @@ public class Human {
 			this.hstrength.setCurrStrength(hst + pr.resourceHere.value);
 			pr.resourceHere.getUsed(this.hstrength.getCurrStrength() - hst);
 		}
-		else if ((!(empty.isEmpty())) && (this.curiosity > this.curiosityThresh)) {
-//			this.pos = empty.get(rand.nextInt(empty.size()));
+		else if ((!(emptyNbrs.isEmpty())) && (this.curiosity > this.curiosityThresh)) {
+//			this.pos = emptyNbrs.get(rand.nextInt(emptyNbrs.size()));
 			if (this.interactionList.isEmpty()) {
-//				position p = empty.get(rand.nextInt(empty.size()));
-				position p = empty.get(0);
-				this.pos.setPosition(p.x, p.y);
+				position p = emptyNbrs.get(rand.nextInt(emptyNbrs.size()));
+				// position p = emptyNbrs.get(0);
+				System.out.println(p.x + "neighbors" + p.y);
+				this.pos.setPosition((int)p.x, (int)p.y);
+								// System.out.println((this.pos.x -1) + "neighbors check" + (this.pos.y -1));
+
+				// this.pos.setPosition(this.pos.x + 1, this.pos.y - 1);
 			}
 			else {
 				double m = Double.MAX_VALUE;
 //				position pr = this.pos;
 				position pr = null;
-				for (position e : empty) {
+				for (position e : emptyNbrs) {
 					for (Human h : this.interactionList.keySet()) {
 						double x = Math.pow(Math.pow(e.x - h.pos.x, 2) + Math.pow(e.y - h.pos.y, 2), 0.5) * this.interactionList.get(h);
 						if (x < m) {
