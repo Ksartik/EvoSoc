@@ -141,8 +141,8 @@ class human:
                 self.curiosity -= C.untrackedoboredom
                 np.vstack(self.positionmatrix,[self.posx,self.posy])
             self.friends()
-            self.hstrenght.setstr(self.hstrenght.getstr-C.movestrenght)
-            self.hstrenght.increasestr() 
+            self.hstrength.setstr(self.hstrength.getstr-C.movestrength)
+            self.hstrength.increasestr() 
         elif n.emptynear.size != 0 and self.curiosity>self.curiosityThres:#we will have a interaction matrix to call upon to minimize distance between them 
             mindis = np.array()
             for i in range(n.emptynear.size):
@@ -157,14 +157,14 @@ class human:
                 self.curiosity -= C.untrackedoboredom
                 np.vstack(self.positionmatrix,[self.posx,self.posy])
             self.friends()
-            self.hstrenght.setstr(self.hstrenght.getstr-C.movestrenght)
-            self.hstrenght.increasestr() 
+            self.hstrength.setstr(self.hstrenghth.getstr-C.movestrength)
+            self.hstrength.increasestr() 
         else:
             #this loop will determine how staying on the same cell would affect the human present
             #decrease in strenght and increase in curiosity will result
             if self.curiosity > self.curiosityThres:
                 self.curiosity = min(self.curiosity + C.bored,1)
-                self.hstrength.setstr(self.hstrength.getstr()-C.borestrenght)
+                self.hstrength.setstr(self.hstrength.getstr()-C.borestrength)
                 #if we add the increasestr method it will be back to square one but hence moving will be rewarding
                 self.friends()
             else:
@@ -191,15 +191,15 @@ def mate(father,mother):
     if father.gender != mother.gender and mother.neighbours.emptynear.size != 0: 
         i = rd.randint(0,mother.neighbours.emptynear.size-1)
         h = human.initchild(father,mother,mother.neighbours.emptynear[i][0],mother.neighbours.emptynear[i][1])
-        father.hstrenght.setstr(father.hstrenght.getstr()-C.matestrenght)
-        mother.hstrenght.setstr(mother.hstrenght.getstr()-C.matestrenght) 
+        father.hstrength.setstr(father.hstrength.getstr()-C.matestrength)
+        mother.hstrength.setstr(mother.hstrength.getstr()-C.matestrength) 
         father.curiosity = father.curiosity - C.matecuriosity
         mother.curiosity = mother.curiosity - C.matecuriosity
     elif father.gender != mother.gender and father.neighbours.emptynear.size != 0:
         i = rd.randint(0,father.neighbours.emptynear.size-1)
         h = human.initchild(father,mother,father.neighbours.emptynear[i][0],father.neighbours.emptynear[i][1])
-        father.hstrenght.setstr(father.hstrenght.getstr()-C.matestrenght)
-        mother.hstrenght.setstr(mother.hstrenght.getstr()-C.matestrenght)
+        father.hstrength.setstr(father.hstrength.getstr()-C.matestrength)
+        mother.hstrength.setstr(mother.hstrength.getstr()-C.matestrength)
         father.curiosity = father.curiosity - C.matecuriosity
         mother.curiosity = mother.curiosity - C.matecuriosity
     else:
@@ -225,7 +225,7 @@ for i in range(C.generations):
             human.move()
             human.lifespan -= 1
         #mate function will follow i guess 
-        if human.strenght.getstr() == 0 or human.lifespan == 0:
+        if human.strength.getstr() == 0 or human.lifespan == 0:
             human.die()
             humans = np.delete(humans,humans.index(human))
 
