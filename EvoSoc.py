@@ -195,7 +195,7 @@ def mate(father,mother):
         mother.hstrenght.setstr(mother.hstrenght.getstr()-C.matestrenght) 
         father.curiosity = father.curiosity - C.matecuriosity
         mother.curiosity = mother.curiosity - C.matecuriosity
-    elif father.gender != mother.gender and mother.neighbours.emptynear.size != 0:
+    elif father.gender != mother.gender and father.neighbours.emptynear.size != 0:
         i = rd.randint(0,father.neighbours.emptynear.size-1)
         h = human.initchild(father,mother,father.neighbours.emptynear[i][0],father.neighbours.emptynear[i][1])
         father.hstrenght.setstr(father.hstrenght.getstr()-C.matestrenght)
@@ -229,7 +229,7 @@ for i in range(C.generations):
             human.die()
             humans = np.delete(humans,humans.index(human))
 
-#rest is the similution part that will graphically output the ongoings of the 
+#rest is the simulation part that will graphically output the ongoings of the human behaviour based on the constraints given
             
         
     
