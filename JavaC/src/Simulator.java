@@ -65,41 +65,10 @@ public class Simulator {
 			new Resource();
 		}
 		
-//		for (int i = 0; i < Constants.gridCol; i++) {
-//			for (int j = 0; j < Constants.gridRow; j++) {
-//				if (Constants.environment[i][j].resourcep) {
-//					System.out.print(Constants.environment[i][j].resourceHere.pos.x);
-//					System.out.print(" ");
-//					System.out.print(Constants.environment[i][j].resourceHere.pos.y);
-//					System.out.print(" ");
-//					System.out.print(Constants.environment[i][j].resourceHere.value);
-//					System.out.println();
-//				}
-//			}
-//		}
-		
 		for (int i = 0; i < Constants.nHumans; i++) {
 			new Human();
 		}
 		
-
-//		for (int i = 0; i < Constants.gridRow; i++) {
-//			for (int j = 0; j < Constants.gridCol; j++) {
-//				if (Constants.environment[i][j].humanp) {
-//					for (position p : Constants.environment[i][j].humanHere.neighbors()) {
-//						System.out.printf("%d %d\n", p.x, p.y);
-//						System.out.printf("%B %B\n", p.humanp, p.resourcep);
-//					}
-//					System.out.println();
-////					System.out.print(Constants.environment[i][j].humanHere.pos.x);
-////					System.out.print(" ");
-////					System.out.print(Constants.environment[i][j].humanHere.pos.y);
-////					System.out.print(" ");
-////					System.out.print(Constants.environment[i][j].humanHere.hstrength.getCurrStrength());
-////					System.out.println();
-//				}
-//			}
-//		}
 		
 //		window.add(new GridDrawing((int)d.getWidth(), (int)d.getHeight()));
 		
@@ -117,7 +86,7 @@ public class Simulator {
 		    	  Vector<Human> humans = currHumans();
 					int q = 0;
 					for (Human h : humans) {
-						System.out.printf("%d : %d %d %B %d %f %f %f", q, h.pos.x, h.pos.y, h.gender, h.lifeSpan, h.hstrength.getCurrStrength(), h.curiosity, h.curiosityThresh);
+						System.out.printf("%d : %d %d %B %d %f %f %f", q, h.pos.x, h.pos.y, h.gender, h.lifeSpan, h.hstrength.getCurrStrength(), h.curiosity, h.curiosityThresh); // Log print
 						System.out.println();
 						q++;
 					}
@@ -140,20 +109,32 @@ public class Simulator {
 							}	
 						}
 					}
-//					
-//					try {
-//						Thread.sleep(5000);
-//					} catch (InterruptedException e) {
-//						Thread.currentThread().interrupt();
-//					}
+			      
+			      		// New Mating algorithm -- Based on the interaction list
+// 			      		for (int i = 0; i < humans.size(); i++) {
+// 						position[] nbrs = humans.get(i).neighbors();
+// 						double mit = 0;
+// 						Human h = null;
+// 						for (int j = 0; j < 8; j++) {
+// 							if ((nbrs[j].humanp) && (humans.get(i).gender != humans.get(j).gender)) {
+// 								if (humans.get(i).interactionList.containsKey(nbrs[i].humanHere)) {
+// 									double it = humans.get(i).interactionList.get(nbrs[j].humanHere);
+// 									if (it > mit) {
+// 										mit = it;
+// 										h = humans.get(j);
+// 									}
+// 								}
+// 							}
+// 						}
+// 						if (h != null) {
+// 							mate(humans.get(i), h);
+// 						}
+// 					}
+			      
 					
 					for (Human h : humans) {
 						h.lifeSpan--;
 					}
-					
-//					countGen++;
-					
-//					window.remove(jc);
 		      }
 		  };
 		  new Timer(delay, taskPerformer).start();
