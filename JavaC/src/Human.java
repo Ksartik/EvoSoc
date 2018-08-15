@@ -1,9 +1,4 @@
 import java.util.*;
-//class StrengthExceededException extends Exception {
-//	public String toString() {
-//		return "Strength Exceeded..";
-//	}
-//}
 public class Human {
 	public class strength {
 		double currStrength;
@@ -16,9 +11,6 @@ public class Human {
 		}
 
 		public void setCurrStrength(double currStrength){
-//			if (currStrength > Constants.strengthThreshold) {
-//				throw new StrengthExceededException();
-//			}
 			if (currStrength > Constants.strengthThreshold) {
 				this.currStrength = Constants.strengthThreshold;
 			}
@@ -47,6 +39,8 @@ public class Human {
 				this.x = (int) ((rand.nextGaussian()*Constants.gridCol/8) + Constants.gridCol/2);
 				this.y = (int) ((rand.nextGaussian()*Constants.gridRow/8) + Constants.gridRow/2);
 			}
+			
+			//Uniform initial distribution 
 //			this.x = (int) (rand.nextInt(Constants.gridCol));
 //			this.y = (int) (rand.nextInt(Constants.gridRow));
 //			while (Constants.environment[this.y][this.x].humanp) {
@@ -154,15 +148,9 @@ public class Human {
 			pr.resourceHere.getUsed(this.hstrength.getCurrStrength() - hst);
 		}
 		else if ((!(empty.isEmpty())) && (this.curiosity > this.curiosityThresh)) {
-//			this.pos = empty.get(rand.nextInt(empty.size()));
 			if (this.interactionList.isEmpty()) {
 				position p = empty.get(rand.nextInt(empty.size()));
-//				position p = empty.get(0);
-//				int nx = p.x;
-//				int ny = p.y;
 				this.pos.setPosition(p.x, p.y);
-//				this.pos.setPosition(nx, ny);
-//				this.pos.setPosition(this.pos.x + 1, this.pos.y - 1);
 			}
 			else {
 				double m = Double.MAX_VALUE;
@@ -224,8 +212,5 @@ public class Human {
 		}
 		return false;
 	}
-//	public Human(double curThresh, Vector<position> expTrack, int lifeSpan) {
-//		
-//	}
 	
 }
