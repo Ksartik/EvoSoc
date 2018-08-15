@@ -100,7 +100,7 @@ public class Human {
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
 				if (i != 0 || j != 0) {
-					nbrs[k] = Constants.environment[(this.pos.y + i)%(Constants.gridRow)][(this.pos.x + j)%(Constants.gridCol)];
+					nbrs[k] = Constants.environment[(Constants.gridRow + this.pos.y + i)%(Constants.gridRow)][(Constants.gridCol + this.pos.x + j)%(Constants.gridCol)];
 					k++;
 				}
 			}
