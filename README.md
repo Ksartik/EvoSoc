@@ -12,7 +12,10 @@ Interestingly we could see two different clusters of being.
 
 ## To DOs..
 * Update Mating Algorithm to achive more realisation.
-* Adding more attributes / factors for human and resources
+* Changing the nHumans variable and determine critical population for explosive growth in terms of mating, and other variables
+* Adding moving resources representing Animals and Disease resources
+* Actually code different sociteties and include enimity between unknown people
+
 
 ### THINK THINK THINK...
 ## Stay Foolish !! Stay Hungry !!
