@@ -15,7 +15,7 @@ public class Simulator {
 		position[] h1nbrs = h1.neighbors();
 		for (int i = 0; i < h1nbrs.length; i++) {
 			if (!(h1nbrs[i].humanp)){
-				new Human(h1nbrs[i].x, h1nbrs[i].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2));
+				new Human(h1nbrs[i].x, h1nbrs[i].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2), 30.0);
 				h1.hstrength.setCurrStrength(h1.hstrength.getCurrStrength() - Constants.mateCost);
 				h2.hstrength.setCurrStrength(h2.hstrength.getCurrStrength() - Constants.mateCost);
 				return;
@@ -24,7 +24,7 @@ public class Simulator {
 		position[] h2nbrs = h2.neighbors();
 		for (int j = 0; j < h2nbrs.length; j++) {
 			if (!(h1nbrs[j].humanp)){
-				new Human(h2nbrs[j].x, h2nbrs[j].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2));
+				new Human(h2nbrs[j].x, h2nbrs[j].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2) , 30.0);
 				h1.hstrength.setCurrStrength(h1.hstrength.getCurrStrength() - Constants.mateCost);
 				h2.hstrength.setCurrStrength(h2.hstrength.getCurrStrength() - Constants.mateCost);
 				return;
