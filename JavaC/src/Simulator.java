@@ -107,8 +107,8 @@ public class Simulator {
 		  ActionListener taskPerformer = new ActionListener() {
 		      public void actionPerformed(ActionEvent evt) {
 		          //...Perform a task...
-		    	  Vector<Human> humans = currHumans();
-					int q = 0;
+		    			Vector<Human> humans = currHumans();
+		         		int q = 0;
 					for (Human h : humans) {
 						System.out.printf("%d : %d %d %B %d %f %f %f", q, h.pos.x, h.pos.y, h.gender, h.lifeSpan, h.hstrength.getCurrStrength(), h.curiosity, h.curiosityThresh); // Log print
 						System.out.println();
@@ -140,12 +140,12 @@ public class Simulator {
 // 						double mit = 0;
 // 						Human h = null;
 // 						for (int j = 0; j < 8; j++) {
-// 							if ((nbrs[j].humanp) && (humans.get(i).gender != humans.get(j).gender)) {
-// 								if (humans.get(i).interactionList.containsKey(nbrs[i].humanHere)) {
+// 							if ((nbrs[j].humanp) && (humans.get(i).gender) (!(nbrs[j].gender)) {
+// 								if (humans.get(i).interactionList.containsKey(nbrs[j].humanHere)) {
 // 									double it = humans.get(i).interactionList.get(nbrs[j].humanHere);
 // 									if (it > mit) {
 // 										mit = it;
-// 										h = humans.get(j);
+// 										h = nbrs[j].humanHere;
 // 									}
 // 								}
 // 							}
