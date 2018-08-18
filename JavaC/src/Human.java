@@ -35,11 +35,11 @@ public class Human {
 		public int x, y;
 		Human h;
 		public humanPosition(Human h) {
-			this.x = (int) ((rand.nextGaussian()*Constants.humanStdDev) + Constants.gridCol/2);
-			this.y = (int) ((rand.nextGaussian()*Constants.humanStdDev) + Constants.gridRow/2);
-			while (this.x < 0 && this.y < 0 && this.x > Constants.gridCol && Constants.gridRow && Constants.environment[this.y][this.x].humanp) {
-				this.x = (int) ((rand.nextGaussian()*Constants.humanStdDev) + Constants.gridCol/2);
-				this.y = (int) ((rand.nextGaussian()*Constants.humanStdDev) + Constants.gridRow/2);
+			this.x = (int) ((rand.nextGaussian()*Constants.humanXStdDev) + Constants.gridCol/2);
+			this.y = (int) ((rand.nextGaussian()*Constants.humanYStdDev) + Constants.gridRow/2);
+			while (this.x < 0 && this.y < 0 && this.x >= Constants.gridCol && this.y >= Constants.gridRow && Constants.environment[this.y][this.x].humanp) {
+				this.x = (int) ((rand.nextGaussian()*Constants.humanXStdDev) + Constants.gridCol/2);
+				this.y = (int) ((rand.nextGaussian()*Constants.humanYStdDev) + Constants.gridRow/2);
 			}
 			
 			//Uniform initial distribution 
