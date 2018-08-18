@@ -37,7 +37,7 @@ public class Human {
 		public humanPosition(Human h) {
 			this.x = (int) ((rand.nextGaussian()*Constants.gridCol/8) + Constants.gridCol/2);
 			this.y = (int) ((rand.nextGaussian()*Constants.gridRow/8) + Constants.gridRow/2);
-			while (Constants.environment[this.y][this.x].humanp) {
+			while (this.x < 0 && this.y < 0 && this.x > Constants.gridCol && Constants.gridRow && Constants.environment[this.y][this.x].humanp) {
 				this.x = (int) ((rand.nextGaussian()*Constants.gridCol/8) + Constants.gridCol/2);
 				this.y = (int) ((rand.nextGaussian()*Constants.gridRow/8) + Constants.gridRow/2);
 			}
@@ -45,7 +45,7 @@ public class Human {
 			//Uniform initial distribution 
 //			this.x = (int) (rand.nextInt(Constants.gridCol));
 //			this.y = (int) (rand.nextInt(Constants.gridRow));
-//			while (Constants.environment[this.y][this.x].humanp) {
+//			while (this.x < 0 && this.y < 0 && this.x > Constants.gridCol && Constants.gridRow && Constants.environment[this.y][this.x].humanp) {
 //				this.x = (int) (rand.nextInt(Constants.gridCol));
 //				this.y = (int) (rand.nextInt(Constants.gridRow));
 //			}
