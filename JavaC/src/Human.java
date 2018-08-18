@@ -29,6 +29,8 @@ public class Human {
 	double curiosityThresh;
 	humanPosition pos;
 	HashMap<Human, Double> interactionList;
+	Vector<Human> mated;
+	HashMap<Human, Double> enemies;
 	public class humanPosition {
 		public int x, y;
 		Human h;
@@ -77,6 +79,8 @@ public class Human {
 		this.curiosityThresh = rand.nextDouble();
 		this.pos = new humanPosition(this);
 		this.interactionList = new HashMap<Human, Double>();
+		this.mated = new Vector<Human>();
+		this.enemies = new HashMap<Human, Double>();
 	}
 	public Human(int x, int y, double curThresh, int lifeSpan) {
 		this.gender = rand.nextInt(2) == 0 ? false : true; 
@@ -86,6 +90,32 @@ public class Human {
 		this.curiosityThresh = curThresh; // mated + mutated
 		this.pos = new humanPosition(this, x, y);
 		this.interactionList = new HashMap<Human, Double>();
+		this.mated = new Vector<Human>();
+		this.enemies = new HashMap<Human, Double>();
+	}
+	public Human(int x, int y, double curThresh, int lifeSpan, double strength) {
+		this.gender = rand.nextInt(2) == 0 ? false : true; 
+		this.hstrength = new strength();
+		this.hstrength.setCurrStrength(strength);
+		this.lifeSpan = lifeSpan; // mated + mutated
+		this.curiosity = rand.nextDouble();
+		this.curiosityThresh = curThresh; // mated + mutated
+		this.pos = new humanPosition(this, x, y);
+		this.interactionList = new HashMap<Human, Double>();
+		this.mated = new Vector<Human>();
+		this.enemies = new HashMap<Human, Double>();
+	}
+	public Human(int x, int y, double curThresh, int lifeSpan , double currentS) {// this is for child or can be used whenever we want to force some current strength to a human
+		this.gender = rand.nextInt(2) == 0 ? false : true; 
+		this.hstrength = new strength();
+		this.lifeSpan = lifeSpan; // mated + mutated
+		this.curiosity = rand.nextDouble();
+		this.curiosityThresh = curThresh; // mated + mutated
+		this.pos = new humanPosition(this, x, y);
+		this.interactionList = new HashMap<Human, Double>();
+		// this.currStrength = currentS;
+		this.hstrength.setCurrStrength(currentS);
+
 	}
 	
 	public position[] neighbors(){
@@ -157,12 +187,16 @@ public class Human {
 //				position pr = this.pos;
 				position pr = null;
 				for (position e : empty) {
+					double x = 0;
 					for (Human h : this.interactionList.keySet()) {
-						double x = Math.pow(Math.pow(e.x - h.pos.x, 2) + Math.pow(e.y - h.pos.y, 2), 0.5) * this.interactionList.get(h);
-						if (x < m) {
-							x = m;
-							pr = e;
-						}
+						x += Math.pow(Math.pow(e.x - h.pos.x, 2) + Math.pow(e.y - h.pos.y, 2), 0.5) * this.interactionList.get(h);
+					}
+					for (Human h : this.enemies.keySet()) {
+						x -= Math.pow(Math.pow(e.x - h.pos.x, 2) + Math.pow(e.y - h.pos.y, 2), 0.5) * this.enemies.get(h);
+					}
+					if (x < m) {
+						m = x;
+						pr = e;
 					}
 				}
 				int nx = pr.x;
