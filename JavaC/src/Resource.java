@@ -12,9 +12,17 @@ public class Resource {
 			this.y = rand.nextInt(Constants.gridRow);
 			this.r = r;
 			while (Constants.environment[this.y][this.x].resourcep) {
-				this.x = (int) (rand.nextInt(Constants.gridCol));
-				this.y = (int) (rand.nextInt(Constants.gridRow));
+				this.x = (rand.nextInt(Constants.gridCol));
+				this.y = (rand.nextInt(Constants.gridRow));
 			}
+			// Gaussian distribution about the centre with some std dev
+// 			this.x = (int) (rand.nextGaussian()*Constants.resourceStdDev + Constants.gridCol/2);
+// 			this.y = (int) (rand.nextGaussian()*Constants.resourceStdDev + Constants.gridRow/2);
+// 			this.r = r;
+// 			while (this.y < 0 && this.x < 0 && this.y > Constants.gridRow && this.x > Constants.gridCol && Constants.environment[this.y][this.x].resourcep) {
+// 				this.x = (int) (rand.nextGaussian()*Constants.resourceStdDev + Constants.gridCol/2);
+// 				this.y = (int) (rand.nextGaussian()*Constants.resourceStdDev + Constants.gridRow/2);
+// 			}
 			Constants.environment[this.y][this.x].resourcep = true;
 			Constants.environment[this.y][this.x].resourceHere = r;	
 		}
