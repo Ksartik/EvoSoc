@@ -105,30 +105,6 @@ public class Human {
 		this.mated = new Vector<Human>();
 		this.enemies = new HashMap<Human, Double>();
 	}
-	public Human(int x, int y, double curThresh, int lifeSpan , double currentS) {// this is for child or can be used whenever we want to force some current strength to a human
-		this.gender = rand.nextInt(2) == 0 ? false : true; 
-		this.hstrength = new strength();
-		this.lifeSpan = lifeSpan; // mated + mutated
-		this.curiosity = rand.nextDouble();
-		this.curiosityThresh = curThresh; // mated + mutated
-		this.pos = new humanPosition(this, x, y);
-		this.interactionList = new HashMap<Human, Double>();
-		// this.currStrength = currentS;
-		this.hstrength.setCurrStrength(currentS);
-
-	}
-	public Human(int x, int y, double curThresh, int lifeSpan , double currentS) {// this is for child or can be used whenever we want to force some current strength to a human
-		this.gender = rand.nextInt(2) == 0 ? false : true; 
-		this.hstrength = new strength();
-		this.lifeSpan = lifeSpan; // mated + mutated
-		this.curiosity = rand.nextDouble();
-		this.curiosityThresh = curThresh; // mated + mutated
-		this.pos = new humanPosition(this, x, y);
-		this.interactionList = new HashMap<Human, Double>();
-		// this.currStrength = currentS;
-		this.hstrength.setCurrStrength(currentS);
-
-	}
 	
 	public position[] neighbors(){
 		position[] nbrs = new position[8];
