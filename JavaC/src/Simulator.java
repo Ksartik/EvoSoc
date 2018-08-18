@@ -22,15 +22,31 @@ public class Simulator {
 // 				new Human(h1nbrs[i].x, h1nbrs[i].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2), 30.0);
 				h1.hstrength.setCurrStrength(h1.hstrength.getCurrStrength() - Constants.mateCost);
 				h2.hstrength.setCurrStrength(h2.hstrength.getCurrStrength() - Constants.mateCost);
-				h1.interactionList.replace(h2, ((h1.interactionList.containsKey(h2)) ? (h1.interactionList.get(h2)*2) : (Constants.mateInteractFactor)));
-				h2.interactionList.replace(h1, ((h2.interactionList.containsKey(h1)) ? (h2.interactionList.get(h1)*2) : (Constants.mateInteractFactor)));
+				if (h1.interactionList.containsKey(h2) && h2.interactionList.containsKey(h1)) {
+					h1.interactionList.replace(h1, h1.interactionList.get(h2)*2);
+					h2.interactionList.replace(h2, h2.interactionList.get(h1)*2);
+				}
+				else {
+					h1.interactionList.put(h2, Constants.mateInteractFactor);
+					h2.interactionList.put(h1, Constants.mateInteractFactor);
+				}
 				h1.mated.add(h2);
 				h2.mated.add(h1);
 				for (Human h : h2.mated) {
-					h.enemies.put(h1, ((h.enemies.containsKey(h1)) ? (h.enemies.get(h1)*2) : (Constants.initEnemyFactor)));
+					if (h1 != h) {
+						if (h1.enemies.containsKey(h)) {
+							//h1.enemies.replace(h, (h1.enemies.get(h) + Constants.enemyFactor));
+							//h.enemies.replace(h1, (h.enemies.get(h1) + Constants.enemyFactor));
+							h1.enemies.replace(h, h1.enemies.get(h)*2);
+							h.enemies.replace(h1, h.enemies.get(h1)*2);
+						}
+						else {
+							h1.enemies.put(h, Constants.initEnemyFactor);
+							h.enemies.put(h1, Constants.initEnemyFactor);
+						}
+					}
 					h.interactionList.remove(h1);
 					h1.interactionList.remove(h);
-					h1.enemies.put(h, ((h1.enemies.containsKey(h)) ? (h1.enemies.get(h)*2) : (Constants.initEnemyFactor)));
 				}
 				return;
 			}
@@ -45,13 +61,29 @@ public class Simulator {
 // 				new Human(h2nbrs[j].x, h2nbrs[j].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2) , 30.0);
 				h1.hstrength.setCurrStrength(h1.hstrength.getCurrStrength() - Constants.mateCost);
 				h2.hstrength.setCurrStrength(h2.hstrength.getCurrStrength() - Constants.mateCost);
-				h1.interactionList.replace(h2, ((h1.interactionList.containsKey(h2)) ? (h1.interactionList.get(h2)*2) : (Constants.mateInteractFactor)));
-				h2.interactionList.replace(h1, ((h2.interactionList.containsKey(h1)) ? (h2.interactionList.get(h1)*2) : (Constants.mateInteractFactor)));
+				if (h1.interactionList.containsKey(h2) && h2.interactionList.containsKey(h1)) {
+					h1.interactionList.replace(h1, h1.interactionList.get(h2)*2);
+					h2.interactionList.replace(h2, h2.interactionList.get(h1)*2);
+				}
+				else {
+					h1.interactionList.put(h2, Constants.mateInteractFactor);
+					h2.interactionList.put(h1, Constants.mateInteractFactor);
+				}
 				h1.mated.add(h2);
 				h2.mated.add(h1);
 				for (Human h : h2.mated) {
-					h.enemies.put(h1, ((h.enemies.containsKey(h1)) ? (h.enemies.get(h1)*2) : (Constants.initEnemyFactor)));
-					h1.enemies.put(h, ((h1.enemies.containsKey(h)) ? (h1.enemies.get(h)*2) : (Constants.initEnemyFactor)));
+					if (h1 != h) {
+						if (h1.enemies.containsKey(h)) {
+							//h1.enemies.replace(h, (h1.enemies.get(h) + Constants.enemyFactor));
+							//h.enemies.replace(h1, (h.enemies.get(h1) + Constants.enemyFactor));
+							h1.enemies.replace(h, h1.enemies.get(h)*2);
+							h.enemies.replace(h1, h.enemies.get(h1)*2);
+						}
+						else {
+							h1.enemies.put(h, Constants.initEnemyFactor);
+							h.enemies.put(h1, Constants.initEnemyFactor);
+						}
+					}
 					h.interactionList.remove(h1);
 					h1.interactionList.remove(h);
 				}
