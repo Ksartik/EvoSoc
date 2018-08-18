@@ -18,4 +18,8 @@ class Constants {
 	public static final double boredLost = 30;
 	public static final double initEnemyFactor = 0.25;
 	public static final double mateInteractFactor = 0.5;
+	public static final double resourceXStdDev = Constants.gridCol/12;
+	public static final double resourceYStdDev = Constants.gridRow/12;
+	public static final double humanXStdDev = Constants.gridCol/12;
+	public static final double humanYStdDev = Constants.gridRow/12;
 }
