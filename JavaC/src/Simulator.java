@@ -15,17 +15,11 @@ public class Simulator {
 		position[] h1nbrs = h1.neighbors();
 		for (int i = 0; i < h1nbrs.length; i++) {
 			if (!(h1nbrs[i].humanp)){
-<<<<<<< HEAD
-<<<<<<< HEAD
 //				new Human(h1nbrs[i].x, h1nbrs[i].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2));
 				new Human(h1nbrs[i].x, h1nbrs[i].y, Math.min(h1.curiosityThresh,  h2.curiosityThresh), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2), 
 						(rand.nextGaussian()*5/3 + (h1.hstrength.getCurrStrength() +h2.hstrength.getCurrStrength())/2));
-=======
-				new Human(h1nbrs[i].x, h1nbrs[i].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2), 30.0);
->>>>>>> f865a2814857b9f9bc59318d54ffa89e7868d29f
-=======
-				new Human(h1nbrs[i].x, h1nbrs[i].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2), 30.0);
->>>>>>> f865a2814857b9f9bc59318d54ffa89e7868d29f
+// 				new Human(h1nbrs[i].x, h1nbrs[i].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2), 30.0);
+// 				new Human(h1nbrs[i].x, h1nbrs[i].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2), 30.0);
 				h1.hstrength.setCurrStrength(h1.hstrength.getCurrStrength() - Constants.mateCost);
 				h2.hstrength.setCurrStrength(h2.hstrength.getCurrStrength() - Constants.mateCost);
 				h1.interactionList.replace(h2, ((h1.interactionList.containsKey(h2)) ? (h1.interactionList.get(h2)*2) : (Constants.mateInteractFactor)));
@@ -44,17 +38,11 @@ public class Simulator {
 		position[] h2nbrs = h2.neighbors();
 		for (int j = 0; j < h2nbrs.length; j++) {
 			if (!(h1nbrs[j].humanp)){
-<<<<<<< HEAD
-<<<<<<< HEAD
 //				new Human(h2nbrs[j].x, h2nbrs[j].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2));
 				new Human(h2nbrs[j].x, h2nbrs[j].y, Math.min(h1.curiosityThresh,  h2.curiosityThresh), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2),
 						(rand.nextGaussian()*5/3 + (h1.hstrength.getCurrStrength() +h2.hstrength.getCurrStrength())/2));
-=======
-				new Human(h2nbrs[j].x, h2nbrs[j].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2) , 30.0);
->>>>>>> f865a2814857b9f9bc59318d54ffa89e7868d29f
-=======
-				new Human(h2nbrs[j].x, h2nbrs[j].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2) , 30.0);
->>>>>>> f865a2814857b9f9bc59318d54ffa89e7868d29f
+// 				new Human(h2nbrs[j].x, h2nbrs[j].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2) , 30.0);
+// 				new Human(h2nbrs[j].x, h2nbrs[j].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2) , 30.0);
 				h1.hstrength.setCurrStrength(h1.hstrength.getCurrStrength() - Constants.mateCost);
 				h2.hstrength.setCurrStrength(h2.hstrength.getCurrStrength() - Constants.mateCost);
 				h1.interactionList.replace(h2, ((h1.interactionList.containsKey(h2)) ? (h1.interactionList.get(h2)*2) : (Constants.mateInteractFactor)));
@@ -110,9 +98,6 @@ public class Simulator {
 		
 		
 //		window.add(new GridDrawing((int)d.getWidth(), (int)d.getHeight()));
-		
-		
-		
 		
 		
 		JComponent jc = new GridDrawing((int)d.getWidth(), (int)d.getHeight());
