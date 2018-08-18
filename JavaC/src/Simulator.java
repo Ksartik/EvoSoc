@@ -16,9 +16,13 @@ public class Simulator {
 		for (int i = 0; i < h1nbrs.length; i++) {
 			if (!(h1nbrs[i].humanp)){
 <<<<<<< HEAD
+<<<<<<< HEAD
 //				new Human(h1nbrs[i].x, h1nbrs[i].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2));
 				new Human(h1nbrs[i].x, h1nbrs[i].y, Math.min(h1.curiosityThresh,  h2.curiosityThresh), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2), 
 						(rand.nextGaussian()*5/3 + (h1.hstrength.getCurrStrength() +h2.hstrength.getCurrStrength())/2));
+=======
+				new Human(h1nbrs[i].x, h1nbrs[i].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2), 30.0);
+>>>>>>> f865a2814857b9f9bc59318d54ffa89e7868d29f
 =======
 				new Human(h1nbrs[i].x, h1nbrs[i].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2), 30.0);
 >>>>>>> f865a2814857b9f9bc59318d54ffa89e7868d29f
@@ -41,9 +45,13 @@ public class Simulator {
 		for (int j = 0; j < h2nbrs.length; j++) {
 			if (!(h1nbrs[j].humanp)){
 <<<<<<< HEAD
+<<<<<<< HEAD
 //				new Human(h2nbrs[j].x, h2nbrs[j].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2));
 				new Human(h2nbrs[j].x, h2nbrs[j].y, Math.min(h1.curiosityThresh,  h2.curiosityThresh), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2),
 						(rand.nextGaussian()*5/3 + (h1.hstrength.getCurrStrength() +h2.hstrength.getCurrStrength())/2));
+=======
+				new Human(h2nbrs[j].x, h2nbrs[j].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2) , 30.0);
+>>>>>>> f865a2814857b9f9bc59318d54ffa89e7868d29f
 =======
 				new Human(h2nbrs[j].x, h2nbrs[j].y, (rand.nextGaussian()*((1 - Math.max(h1.curiosityThresh, h2.curiosityThresh))/3) + Math.min(h1.curiosityThresh, h2.curiosityThresh)), (int)(rand.nextGaussian()*10/3 + (h1.lifeSpan + h2.lifeSpan)/2) , 30.0);
 >>>>>>> f865a2814857b9f9bc59318d54ffa89e7868d29f

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /Constants.class
 /GridDrawing.class
 /Human$humanPosition.class
@@ -9,6 +10,11 @@
 /Simulator$1.class
 /Simulator.class
 /position.class
+=======
+*.class
+
+
+>>>>>>> f865a2814857b9f9bc59318d54ffa89e7868d29f
 =======
 *.class
 
