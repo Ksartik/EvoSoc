@@ -65,7 +65,7 @@ public class Resource {
 		this.pos = new resourcePosition(this, pos.x, pos.y);
 	}
 	public void getUsed(double val) {
-		if (val > this.value) {
+		if (val >= this.value) {
 			Constants.environment[this.pos.y][this.pos.x].resourcep = false;
 			Constants.environment[this.pos.y][this.pos.x].resourceHere = null;
 		}
