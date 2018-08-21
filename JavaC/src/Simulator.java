@@ -35,10 +35,10 @@ public class Simulator {
 				for (Human h : h2.mated) {
 					if (h1 != h) {
 						if (h1.enemies.containsKey(h)) {
-							//h1.enemies.replace(h, (h1.enemies.get(h) + Constants.enemyFactor));
-							//h.enemies.replace(h1, (h.enemies.get(h1) + Constants.enemyFactor));
-							h1.enemies.replace(h, h1.enemies.get(h)*2);
-							h.enemies.replace(h1, h.enemies.get(h1)*2);
+							h1.enemies.replace(h, (h1.enemies.get(h) + Constants.enemyFactor));
+							h.enemies.replace(h1, (h.enemies.get(h1) + Constants.enemyFactor));
+							// h1.enemies.replace(h, h1.enemies.get(h)*2);
+							// h.enemies.replace(h1, h.enemies.get(h1)*2);
 						}
 						else {
 							h1.enemies.put(h, Constants.initEnemyFactor);
@@ -74,10 +74,10 @@ public class Simulator {
 				for (Human h : h2.mated) {
 					if (h1 != h) {
 						if (h1.enemies.containsKey(h)) {
-							//h1.enemies.replace(h, (h1.enemies.get(h) + Constants.enemyFactor));
-							//h.enemies.replace(h1, (h.enemies.get(h1) + Constants.enemyFactor));
-							h1.enemies.replace(h, h1.enemies.get(h)*2);
-							h.enemies.replace(h1, h.enemies.get(h1)*2);
+							h1.enemies.replace(h, (h1.enemies.get(h) + Constants.enemyFactor));
+							h.enemies.replace(h1, (h.enemies.get(h1) + Constants.enemyFactor));
+							// h1.enemies.replace(h, h1.enemies.get(h)*2);
+							// h.enemies.replace(h1, h.enemies.get(h1)*2);
 						}
 						else {
 							h1.enemies.put(h, Constants.initEnemyFactor);
@@ -139,11 +139,14 @@ public class Simulator {
 		  ActionListener taskPerformer = new ActionListener() {
 		      public void actionPerformed(ActionEvent evt) {
 		          //...Perform a task...
+
 		    			Vector<Human> humans = currHumans();
 		         		int q = 0;
 					for (Human h : humans) {
 						System.out.printf("%d : %d %d %B %d %f %f %f", q, h.pos.x, h.pos.y, h.gender, h.lifeSpan, h.hstrength.getCurrStrength(), h.curiosity, h.curiosityThresh); // Log print
 						System.out.println();
+						System.out.println(Constants.count);
+
 						q++;
 					}
 					for (Human h : humans) {
@@ -191,6 +194,12 @@ public class Simulator {
 					for (Human h : humans) {
 						h.lifeSpan--;
 					}
+				Constants.count++;
+		      	if(Constants.count >= Constants.simulations_genr)
+		      	{
+		      		Constants.nP = q;
+		      		System.out.println(q);
+		      	}	
 		      }
 		  };
 		  new Timer(delay, taskPerformer).start();
@@ -242,6 +251,6 @@ public class Simulator {
 //			
 //			window.remove(jc);
 //		}
-		
+		// System.exit(Constants.nP);
 	}
 }
