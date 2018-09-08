@@ -7,13 +7,13 @@ public class GridDrawing extends JComponent {
 	int w, h;	
 	
 	public Color humanColor (Human h) {
-		int green = (int) (h.hstrength.getCurrStrength()/Constants.strengthThreshold * 255);
-		int red = (int) (Math.abs((h.curiosity - h.curiosityThresh) * 255));
-		return new Color( 0 , green , 0);
+		int red = (int) (h.hstrength.getCurrStrength()/Constants.strengthThreshold * 255);
+		int green = (int) (Math.abs((h.curiosity - h.curiosityThresh) * 255));
+		return new Color(red, green, 0);
 	}
 	
 	public Color resourceColor (Resource r) {
-		return new Color (((int) (r.value/Constants.strengthThreshold/2 * 255)), 0, 0);
+		return new Color (0, 0, ((int) (r.value/Constants.strengthThreshold/2 * 255)));
 	}
 	
 	public void paintComponent (Graphics g) {
@@ -38,20 +38,16 @@ public class GridDrawing extends JComponent {
 //				g2.draw(rect);
 
 				if (Constants.environment[r][c].humanp) {
-					// g2.setColor(humanColor (Constants.environment[r][c].humanHere));
-					if(Constants.environment[r][c].humanHere.gender)
-					{
-						g2.setColor(Color.YELLOW);
-					}
-					else
-					{
+//					g2.setColor(humanColor (Constants.environment[r][c].humanHere));
+					if (Constants.environment[r][c].humanHere.gender) 
 						g2.setColor(Color.GREEN);
-					}	
+					else
+						g2.setColor(Color.YELLOW);
 //					rect.setRect(x, y, 5, 5);
 					g2.fillRect(x, y, blockWid, blockHei);
 				}
 				else if (Constants.environment[r][c].resourcep) {
-					g2.setColor(resourceColor(Constants.environment[r][c].resourceHere));
+//					g2.setColor(resourceColor(Constants.environment[r][c].resourceHere));
 					g2.setColor(Color.RED);
 //					rect.setRect(x, y, 5, 5);
 					g2.fillRect(x, y, blockWid, blockHei);
@@ -72,11 +68,6 @@ public class GridDrawing extends JComponent {
 				x += 5;
 			}
 			y += 5;
-			if (Constants.count >= Constants.simulations_genr+1) {
-				System.exit(0);
-			}
-
-
 		}
 //		for (double y = 0; y < w; y += blockHei) {
 //			int c = 0;

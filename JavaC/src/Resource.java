@@ -15,14 +15,13 @@ public class Resource {
 				this.x = (rand.nextInt(Constants.gridCol));
 				this.y = (rand.nextInt(Constants.gridRow));
 			}
-			// Gaussian distribution about the centre with some std dev
-// 			this.x = (int) (rand.nextGaussian()*Constants.resourceXStdDev + Constants.gridCol/2);
-// 			this.y = (int) (rand.nextGaussian()*Constants.resourceYStdDev + Constants.gridRow/2);
-// 			this.r = r;
-// 			while ((this.y < 0) || (this.x < 0) || (this.y >= Constants.gridRow) || (this.x >= Constants.gridCol) || (Constants.environment[this.y][this.x].resourcep)) {
-// 				this.x = (int) (rand.nextGaussian()*Constants.resourceXStdDev + Constants.gridCol/2);
-// 				this.y = (int) (rand.nextGaussian()*Constants.resourceYStdDev + Constants.gridRow/2);
-// 			}
+//			this.x = (int) (rand.nextGaussian()*Constants.resourceXStdDev + Constants.gridCol/2);
+//			this.y = (int) (rand.nextGaussian()*Constants.resourceYStdDev + Constants.gridRow/2);
+//			this.r = r;
+//			while ((this.y < 0) || (this.x < 0) || (this.y >= Constants.gridRow) || (this.x >= Constants.gridCol) || (Constants.environment[this.y][this.x].resourcep)) {
+//				this.x = (int) (rand.nextGaussian()*Constants.resourceXStdDev + Constants.gridCol/2);
+//				this.y = (int) (rand.nextGaussian()*Constants.resourceYStdDev + Constants.gridRow/2);
+//			}
 			Constants.environment[this.y][this.x].resourcep = true;
 			Constants.environment[this.y][this.x].resourceHere = r;	
 		}
@@ -46,9 +45,9 @@ public class Resource {
 	}
 	public Resource() {
 		// TODO Auto-generated constructor stub
-		this.value = rand.nextDouble()*Constants.strengthThreshold/2 + Constants.strengthThreshold/2;
-		while (this.value < 0) 
-			this.value = rand.nextDouble()*Constants.strengthThreshold/2 + Constants.strengthThreshold/2;
+		this.value = rand.nextDouble()*Constants.strengthThreshold/2 + Constants.strengthThreshold;
+//		while (this.value < 0) 
+//			this.value = rand.nextDouble()*Constants.strengthThreshold/2 + Constants.strengthThreshold/2;
 		this.pos = new resourcePosition(this);
 	}
 	
@@ -59,7 +58,7 @@ public class Resource {
 	 * can be either an Animal or a Plant (randomly).
 	 */
 	public Resource(position pos) {
-		this.value = rand.nextDouble()*Constants.strengthThreshold/2 + Constants.strengthThreshold/2;
+		this.value = rand.nextDouble()*Constants.strengthThreshold/2 + Constants.strengthThreshold;
 		while (this.value < 0) 
 			this.value = rand.nextDouble()*Constants.strengthThreshold/2 + Constants.strengthThreshold/2;
 		this.pos = new resourcePosition(this, pos.x, pos.y);
@@ -68,6 +67,7 @@ public class Resource {
 		if (val >= this.value) {
 			Constants.environment[this.pos.y][this.pos.x].resourcep = false;
 			Constants.environment[this.pos.y][this.pos.x].resourceHere = null;
+			new Resource();
 		}
 		else {
 			this.value -= val;

@@ -25,6 +25,7 @@ public class Human {
 	strength hstrength; 
 	Vector<Integer[]> expTrack = new Vector<Integer[]>(); 
 	int lifeSpan; 
+	int age;
 	double curiosity;
 	double curiosityThresh;
 	humanPosition pos;
@@ -37,7 +38,7 @@ public class Human {
 		public humanPosition(Human h) {
 			this.x = (int) ((rand.nextGaussian()*Constants.humanXStdDev) + Constants.gridCol/2);
 			this.y = (int) ((rand.nextGaussian()*Constants.humanYStdDev) + Constants.gridRow/2);
-			while ((this.x < 0) || (this.y < 0) || (this.x >= Constants.gridCol) || (this.y >= Constants.gridRow) || (Constants.environment[this.y][this.x].humanp)) {
+			while ((this.x < 0) || (this.x >= Constants.gridCol) || (this.y < 0) || (this.y >= Constants.gridRow) || (Constants.environment[this.y][this.x].humanp)) {
 				this.x = (int) ((rand.nextGaussian()*Constants.humanXStdDev) + Constants.gridCol/2);
 				this.y = (int) ((rand.nextGaussian()*Constants.humanYStdDev) + Constants.gridRow/2);
 			}
@@ -45,7 +46,7 @@ public class Human {
 			//Uniform initial distribution 
 //			this.x = (int) (rand.nextInt(Constants.gridCol));
 //			this.y = (int) (rand.nextInt(Constants.gridRow));
-//			while (this.x < 0 && this.y < 0 && this.x > Constants.gridCol && Constants.gridRow && Constants.environment[this.y][this.x].humanp) {
+//			while (Constants.environment[this.y][this.x].humanp) {
 //				this.x = (int) (rand.nextInt(Constants.gridCol));
 //				this.y = (int) (rand.nextInt(Constants.gridRow));
 //			}
@@ -81,6 +82,7 @@ public class Human {
 		this.interactionList = new HashMap<Human, Double>();
 		this.mated = new Vector<Human>();
 		this.enemies = new HashMap<Human, Double>();
+		this.age = 0;
 	}
 	public Human(int x, int y, double curThresh, int lifeSpan) {
 		this.gender = rand.nextInt(2) == 0 ? false : true; 
@@ -92,6 +94,7 @@ public class Human {
 		this.interactionList = new HashMap<Human, Double>();
 		this.mated = new Vector<Human>();
 		this.enemies = new HashMap<Human, Double>();
+		this.age = 0;
 	}
 	public Human(int x, int y, double curThresh, int lifeSpan, double strength) {
 		this.gender = rand.nextInt(2) == 0 ? false : true; 
@@ -104,6 +107,7 @@ public class Human {
 		this.interactionList = new HashMap<Human, Double>();
 		this.mated = new Vector<Human>();
 		this.enemies = new HashMap<Human, Double>();
+		this.age = 0;
 	}
 	
 	public position[] neighbors(){
@@ -143,14 +147,18 @@ public class Human {
 		}
 		for (position p : humans) {
 			if (this.interactionList.containsKey(p.humanHere)) {
-				this.interactionList.put(p.humanHere, Math.max(this.interactionList.get(p.humanHere) + Constants.interactFactor, 1.0));				
+				this.interactionList.replace(p.humanHere, Math.max(this.interactionList.get(p.humanHere) + Constants.interactFactor, 1.0));				
+			}
+			else if (this.enemies.containsKey(p.humanHere)) {
+				this.hstrength.setCurrStrength(this.hstrength.getCurrStrength() - this.enemies.get(p.humanHere)*Constants.enemyFight);
+				this.enemies.replace(p.humanHere, this.enemies.get(p.humanHere) + Constants.enemyFactor);
 			}
 			else {
-				this.interactionList.put(p.humanHere, Constants.initInteract);
-				this.curiosity += Constants.untrackedFactor;
+				this.interactionList.put(p.humanHere, Constants.initInteract + rand.nextDouble()*(Math.abs(p.humanHere.hstrength.getCurrStrength() - this.hstrength.getCurrStrength())));
+				this.curiosity -= Constants.untrackedFactor;
 			}
 		}
-		if (!(resources.isEmpty()) && (this.hstrength.getCurrStrength() < Constants.strengthThreshold)) {
+		if (!(resources.isEmpty()) && (this.hstrength.getCurrStrength() < Constants.strengthThreshold/4)) {
 			double rval = 0;
 			position pr = null;
 			for (position p : resources) {
@@ -166,6 +174,7 @@ public class Human {
 			pr.resourceHere.getUsed(this.hstrength.getCurrStrength() - hst);
 		}
 		else if ((!(empty.isEmpty())) && (this.curiosity > this.curiosityThresh)) {
+			this.hstrength.setCurrStrength(this.hstrength.getCurrStrength() - Constants.boredLost/2);
 			if (this.interactionList.isEmpty()) {
 				position p = empty.get(rand.nextInt(empty.size()));
 				this.pos.setPosition(p.x, p.y);
@@ -202,9 +211,16 @@ public class Human {
 				return;
 			}
 		}
+		boolean containsPoss = false;
+		for (Integer[] p : this.expTrack) {
+			if (p[0] == this.pos.x  && p[1] == this.pos.y) {
+				containsPoss = true;
+				break;
+			}
+		}
 		Integer[] poss = {this.pos.x, this.pos.y};
-		if (this.expTrack.contains(poss)) {
-			this.curiosity -= Constants.trackedFactor;
+		if (containsPoss) {
+			this.curiosity += Constants.trackedFactor;
 		}
 		else {
 			this.curiosity -= Constants.untrackedFactor;
@@ -214,7 +230,7 @@ public class Human {
 	}
 	
 	public Boolean canSurvive () {
-		return ((this.hstrength.getCurrStrength() > Constants.minStrength) && (this.lifeSpan >= 0));
+		return ((this.hstrength.getCurrStrength() > Constants.minStrength) && (this.lifeSpan > 0));
 	}
 	
 	public void die () {
